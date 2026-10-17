@@ -13,6 +13,18 @@
   var nav = document.getElementById('nav');
   var barra = document.getElementById('barra-movil');
   var zonas = [document.getElementById('entradas'), document.getElementById('inscripcion')];
+  var flotante = document.getElementById('flotante');
+  var cinta = document.getElementById('cinta');
+  var cintaVista = false;
+  try { cintaVista = sessionStorage.getItem('vat-cinta') === '1'; } catch (e) {}
+  function cerrarCinta() {
+    cinta.hidden = true; cintaVista = true;
+    try { sessionStorage.setItem('vat-cinta', '1'); } catch (e) {}
+  }
+  if (cinta) {
+    document.getElementById('cinta-x').addEventListener('click', cerrarCinta);
+    cinta.querySelector('.cinta__ir').addEventListener('click', cerrarCinta);
+  }
   var tick = false;
   function visible(el) { var r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }
   function onScroll() {
@@ -20,7 +32,11 @@
     requestAnimationFrame(function () {
       var y = window.scrollY;
       nav.classList.toggle('is-scrolled', y > 8);
-      barra.classList.toggle('is-on', y > innerHeight * 0.7 && !zonas.some(visible));
+      var mostrarCta = y > innerHeight * 0.7 && !zonas.some(visible);
+      barra.classList.toggle('is-on', mostrarCta);
+      if (flotante) flotante.classList.toggle('is-on', mostrarCta);
+      var alto = document.documentElement.scrollHeight - innerHeight;
+      if (cinta && !cintaVista && !document.documentElement.classList.contains('hoja-abierta') && alto > 0 && y / alto >= 0.6) { cinta.hidden = false; cintaVista = true; }
       tick = false;
     });
   }
@@ -59,8 +75,9 @@
 
   function enviarFormulario(datos) {
     if (!ENDPOINT_HOJA) return Promise.resolve({ enviado: false, datos: datos });
-    datos.origen = location.hostname + location.pathname + (datos.entrada ? ' | entrada: ' + datos.entrada : '');
-    delete datos.entrada;
+    datos.origen = location.hostname + location.pathname + (datos.entrada ? ' | entrada: ' + datos.entrada : '') +
+      (datos.entrada_form ? ' | entrada_form: ' + datos.entrada_form : '');
+    delete datos.entrada; delete datos.entrada_form;
     // text/plain evita la comprobación previa (preflight) que Apps Script no soporta.
     return fetch(ENDPOINT_HOJA, {
       method: 'POST',
@@ -89,7 +106,7 @@
     var pieFin = document.getElementById('hoja-pie-fin');
     var gracias = document.getElementById('hoja-gracias');
     var cuerpo = document.getElementById('hoja-cuerpo');
-    var actual = 0, abridor = null, enviado = false, entrada = '';
+    var actual = 0, abridor = null, enviado = false, entrada = '', entradaForm = '';
     var pagos = hoja.querySelector('.pagos');
 
     /* la entrada elegida destaca su botón de pago; sin elección, ambos iguales */
@@ -187,6 +204,7 @@
       d.autoriza_datos = form.elements.autoriza_datos.checked;
       d.autoriza_comercial = form.elements.autoriza_comercial.checked;
       d.entrada = entrada;
+      d.entrada_form = entradaForm;
       return d;
     }
 
@@ -227,6 +245,8 @@
       abridor = document.activeElement;
       var elegida = e && e.currentTarget && e.currentTarget.getAttribute ? e.currentTarget.getAttribute('data-entrada') : null;
       if (elegida) { entrada = elegida; if (enviado) marcarEntrada(); }
+      var org = e && e.currentTarget && e.currentTarget.getAttribute ? e.currentTarget.getAttribute('data-origen') : null;
+      if (org && !entradaForm) entradaForm = org;
       if (!hoja.open) {
         hoja.showModal();
         document.documentElement.classList.add('hoja-abierta');
@@ -255,6 +275,17 @@
     }
 
     document.querySelectorAll('[data-abrir-form]').forEach(function (b) { b.addEventListener('click', abrir); });
+
+    /* captación inline: la respuesta 1 se guarda y el diálogo abre en la pregunta 2 */
+    document.querySelectorAll('[data-ocupacion]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var v = b.getAttribute('data-ocupacion');
+        var r = [].filter.call(form.querySelectorAll('input[name="ocupacion"]'), function (x) { return x.value === v; })[0];
+        if (r && !enviado) { r.checked = true; pasos[0].querySelector('.hoja__error').textContent = ''; if (actual === 0) actual = 1; }
+        if (!entradaForm) entradaForm = 'hero-inline';
+        abrir();
+      });
+    });
     hoja.querySelectorAll('[data-cerrar-form]').forEach(function (b) {
       b.addEventListener('click', function (e) { e.preventDefault(); cerrar(b.getAttribute('href')); });
     });

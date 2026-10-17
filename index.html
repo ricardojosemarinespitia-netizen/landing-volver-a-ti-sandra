@@ -56,7 +56,7 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>
-<link rel="stylesheet" href="css/styles.css?v=9">
+<link rel="stylesheet" href="css/styles.css?v=10">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -66,7 +66,7 @@
   <a class="wordmark" href="#inicio" aria-label="Sandra Grast, inicio">
     <span class="wordmark__name">Sandra Grast</span>
   </a>
-  <a class="btn btn--sm" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero inscribirme</a>
+  <a class="btn btn--sm" href="#entradas" data-abrir-form data-origen="nav" aria-haspopup="dialog">Quiero inscribirme</a>
 </header>
 
 <main id="contenido">
@@ -86,7 +86,7 @@
       <span aria-hidden="true">·</span> Presencial
     </p>
     <div class="hero__ctas">
-      <a class="btn btn--lg" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero vivir esta experiencia</a>
+      <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="hero" aria-haspopup="dialog">Quiero vivir esta experiencia</a>
       <p class="hero__precio">Desde <strong>$87.000</strong> · Cupos limitados</p>
     </div>
     <p class="hero__paso">Primero cuéntanos un poco de ti; después eliges tu entrada y pagas.</p>
@@ -104,6 +104,24 @@
     <li>Te preguntas cuándo fue la última vez que te detuviste a pensar qué quieres realmente para tu vida.</li>
   </ul>
   <p class="cita cita--m reconoces__cierre">Y quizá ha llegado el momento de observarlo.</p>
+</section>
+
+<!-- CAPTACIÓN INLINE · la primera pregunta del formulario, a un toque -->
+<section class="sec captar" id="empezar" aria-labelledby="captar-titulo" data-con-js hidden>
+  <div class="captar__in">
+    <p class="eyebrow">Para inscribirte · pregunta 1 de 6</p>
+    <h2 id="captar-titulo" class="captar__q">¿A qué te dedicas actualmente?</h2>
+    <div class="captar__ops" role="group" aria-labelledby="captar-titulo">
+      <button type="button" class="captar__op" data-ocupacion="Soy empleado/a o profesional." aria-haspopup="dialog">Soy empleado/a o profesional</button>
+      <button type="button" class="captar__op" data-ocupacion="Soy emprendedor/a o tengo mi propio negocio." aria-haspopup="dialog">Soy emprendedor/a o tengo mi propio negocio</button>
+      <button type="button" class="captar__op" data-ocupacion="Soy independiente o consultor/a." aria-haspopup="dialog">Soy independiente o consultor/a</button>
+      <button type="button" class="captar__op" data-ocupacion="Trabajo en el sector salud." aria-haspopup="dialog">Trabajo en el sector salud</button>
+      <button type="button" class="captar__op" data-ocupacion="Actualmente estoy estudiando." aria-haspopup="dialog">Actualmente estoy estudiando</button>
+      <button type="button" class="captar__op" data-ocupacion="Estoy en un proceso de cambio profesional o personal." aria-haspopup="dialog">Estoy en un proceso de cambio profesional o personal</button>
+      <button type="button" class="captar__op" data-ocupacion="Otra ocupación." aria-haspopup="dialog">Otra ocupación</button>
+    </div>
+    <p class="captar__nota">Al elegir, sigues con el formulario; al terminarlo eliges tu entrada y pagas.</p>
+  </div>
 </section>
 
 <!-- 3 · QUÉ VIVIRÁS -->
@@ -142,14 +160,14 @@
           <h3 id="t1" class="ticket__tipo">Entrada individual</h3>
           <p class="ticket__precio"><span class="ticket__cop">$</span>87.000 <span class="ticket__mon">COP</span></p>
           <p class="ticket__det">Una persona.</p>
-          <a class="btn btn--full btn--claro" href="#entradas" data-abrir-form data-entrada="individual" aria-haspopup="dialog">Quiero inscribirme</a>
+          <a class="btn btn--full btn--claro" href="#entradas" data-abrir-form data-entrada="individual" data-origen="boton-ticket-individual" aria-haspopup="dialog">Quiero inscribirme</a>
         </article>
         <article class="ticket ticket--pareja" aria-labelledby="t2">
           <p class="ticket__sello">Primeras 20 parejas</p>
           <h3 id="t2" class="ticket__tipo">Precio especial pareja</h3>
           <p class="ticket__precio"><span class="ticket__cop">$</span>127.000 <span class="ticket__mon">COP</span></p>
           <p class="ticket__det">Dos personas.</p>
-          <a class="btn btn--full btn--caramelo" href="#entradas" data-abrir-form data-entrada="pareja" aria-haspopup="dialog">Quiero inscribirme en pareja</a>
+          <a class="btn btn--full btn--caramelo" href="#entradas" data-abrir-form data-entrada="pareja" data-origen="boton-ticket-pareja" aria-haspopup="dialog">Quiero inscribirme en pareja</a>
         </article>
       </div>
       <p class="entradas__pago">Al tocar tu entrada se abre un formulario corto; al terminarlo, pasas al pago.</p>
@@ -224,14 +242,19 @@
       <details><summary>¿Tengo que compartir mis asuntos personales con los demás?</summary>
         <p>No es necesario que compartas públicamente asuntos personales. Puedes realizar tu reflexión de manera individual y participar respetando tus propios límites.</p></details>
       <details><summary>¿Cómo puedo inscribirme?</summary>
-        <p>Primero <button type="button" class="enlace" data-abrir-form aria-haspopup="dialog">completa el formulario</button>; al enviarlo eliges tu entrada (individual o en pareja) y completas el pago en línea con Wompi. <span class="falta">[FALTA: procedimiento definitivo de inscripción y pago: qué pasa después de pagar]</span></p></details>
+        <p>Primero <button type="button" class="enlace" data-abrir-form data-origen="faq" aria-haspopup="dialog">completa el formulario</button>; al enviarlo eliges tu entrada (individual o en pareja) y completas el pago en línea con Wompi. <span class="falta">[FALTA: procedimiento definitivo de inscripción y pago: qué pasa después de pagar]</span></p></details>
     </div>
   </div>
   <div class="cierre" id="inscripcion">
     <p class="cierre__titulo">No tienes que tener todas las respuestas. <span>Pero puedes empezar por hacerte una pregunta diferente.</span></p>
-    <a class="btn btn--lg" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero inscribirme</a>
+    <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="cierre" aria-haspopup="dialog">Quiero inscribirme</a>
     <p class="cierre__nota">Consulta la fecha, el lugar y las condiciones de participación antes de completar tu inscripción.</p>
   </div>
+</section>
+
+<section class="franja" aria-labelledby="franja-titulo">
+  <p id="franja-titulo" class="franja__t">Cuéntanos un poco de ti y asegura tu lugar</p>
+  <a class="btn btn--caramelo" href="#entradas" data-abrir-form data-origen="footer" aria-haspopup="dialog">Empezar el formulario</a>
 </section>
 
 </main>
@@ -243,7 +266,15 @@
 
 <div class="barra-movil" id="barra-movil">
   <p class="barra-movil__info"><strong>VOLVER A TI</strong><span>5 nov · desde $87.000</span></p>
-  <a class="btn btn--sm btn--caramelo" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero inscribirme</a>
+  <a class="btn btn--sm btn--caramelo" href="#entradas" data-abrir-form data-origen="barra-movil" aria-haspopup="dialog">Quiero inscribirme</a>
+</div>
+
+<a class="flotante" id="flotante" href="#entradas" data-abrir-form data-origen="flotante" aria-haspopup="dialog">Quiero inscribirme</a>
+
+<div class="cinta" id="cinta" role="region" aria-label="Aviso" hidden>
+  <p class="cinta__t">¿Te quedó alguna duda? Responde 5 preguntas y te contamos todo.</p>
+  <button type="button" class="cinta__ir" data-abrir-form data-origen="cinta" aria-haspopup="dialog">Responder</button>
+  <button type="button" class="cinta__x" id="cinta-x" aria-label="Cerrar aviso"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
 </div>
 
 <!-- FORMULARIO · hoja modal por pasos (no envía nada todavía: ver enviarFormulario() en js/main.js) -->
@@ -379,6 +410,6 @@
   <ol id="rev-lista"></ol>
 </section>
 
-<script src="js/main.js?v=4" defer></script>
+<script src="js/main.js?v=5" defer></script>
 </body>
 </html>

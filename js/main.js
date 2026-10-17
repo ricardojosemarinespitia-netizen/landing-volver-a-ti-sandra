@@ -59,7 +59,8 @@
 
   function enviarFormulario(datos) {
     if (!ENDPOINT_HOJA) return Promise.resolve({ enviado: false, datos: datos });
-    datos.origen = location.hostname + location.pathname;
+    datos.origen = location.hostname + location.pathname + (datos.entrada ? ' | entrada: ' + datos.entrada : '');
+    delete datos.entrada;
     // text/plain evita la comprobación previa (preflight) que Apps Script no soporta.
     return fetch(ENDPOINT_HOJA, {
       method: 'POST',
@@ -88,7 +89,16 @@
     var pieFin = document.getElementById('hoja-pie-fin');
     var gracias = document.getElementById('hoja-gracias');
     var cuerpo = document.getElementById('hoja-cuerpo');
-    var actual = 0, abridor = null, enviado = false;
+    var actual = 0, abridor = null, enviado = false, entrada = '';
+    var pagos = hoja.querySelector('.pagos');
+
+    /* la entrada elegida destaca su botón de pago; sin elección, ambos iguales */
+    function marcarEntrada() {
+      if (entrada) pagos.setAttribute('data-elegida', entrada); else pagos.removeAttribute('data-elegida');
+      pagos.querySelectorAll('.pago').forEach(function (a) { a.classList.toggle('is-elegida', a.getAttribute('data-pago') === entrada); });
+      if (entrada === 'individual') pagos.insertBefore(document.getElementById('pago-individual'), pagos.firstChild);
+      if (entrada === 'pareja') pagos.insertBefore(document.getElementById('pago-pareja'), pagos.firstChild);
+    }
     var DUR = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--d3')) || 0;
 
     document.querySelectorAll('[data-con-js]').forEach(function (el) { el.hidden = false; });
@@ -176,6 +186,7 @@
       d.whatsapp = form.elements.whatsapp.value.trim();
       d.autoriza_datos = form.elements.autoriza_datos.checked;
       d.autoriza_comercial = form.elements.autoriza_comercial.checked;
+      d.entrada = entrada;
       return d;
     }
 
@@ -190,12 +201,13 @@
         enviado = true;
         pasos.forEach(function (p) { p.hidden = true; });
         intro.hidden = true;
+        marcarEntrada();
         gracias.hidden = false;
         var gp = gracias.querySelector('path');
         gracias.style.setProperty('--len', Math.ceil(gp.getTotalLength()));
         gracias.classList.add('is-on');
         pie.hidden = true; pieFin.hidden = false;
-        cuenta.textContent = 'Respuestas completas';
+        cuenta.textContent = 'Respuestas enviadas · falta el pago';
         barraH.style.setProperty('--avance', 1);
         cuerpo.scrollTop = 0;
         document.getElementById('gracias-t').focus({ preventScroll: true });
@@ -213,6 +225,8 @@
     function abrir(e) {
       if (e) e.preventDefault();
       abridor = document.activeElement;
+      var elegida = e && e.currentTarget && e.currentTarget.getAttribute ? e.currentTarget.getAttribute('data-entrada') : null;
+      if (elegida) { entrada = elegida; if (enviado) marcarEntrada(); }
       if (!hoja.open) {
         hoja.showModal();
         document.documentElement.classList.add('hoja-abierta');

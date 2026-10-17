@@ -55,7 +55,7 @@
    */
   /* URL de la aplicación web de Google Apps Script que escribe en la hoja de
      cálculo (termina en /exec). Mientras esté vacía, el formulario NO envía nada. */
-  var ENDPOINT_HOJA = '';
+  var ENDPOINT_HOJA = 'https://script.google.com/macros/s/AKfycbz92SLCTBneQdP5AQMhWBXQcBDP0E0rKY1BIBD1mz8USegJt2uwF_BR334xYmJk_F2Z/exec';
 
   function enviarFormulario(datos) {
     if (!ENDPOINT_HOJA) return Promise.resolve({ enviado: false, datos: datos });

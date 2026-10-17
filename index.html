@@ -56,7 +56,7 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>
-<link rel="stylesheet" href="css/styles.css?v=8">
+<link rel="stylesheet" href="css/styles.css?v=9">
 <script>document.documentElement.classList.add('js')</script>
 <style>/*publico*/.falta,.revision{display:none!important}</style></head>
 <body>
@@ -66,7 +66,7 @@
   <a class="wordmark" href="#inicio" aria-label="Sandra Grast, inicio">
     <span class="wordmark__name">Sandra Grast</span>
   </a>
-  <a class="btn btn--sm" href="#entradas">Quiero inscribirme</a>
+  <a class="btn btn--sm" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero inscribirme</a>
 </header>
 
 <main id="contenido">
@@ -86,9 +86,10 @@
       <span aria-hidden="true">·</span> Presencial
     </p>
     <div class="hero__ctas">
-      <a class="btn btn--lg" href="#entradas">Quiero vivir esta experiencia</a>
+      <a class="btn btn--lg" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero vivir esta experiencia</a>
       <p class="hero__precio">Desde <strong>$87.000</strong> · Cupos limitados</p>
     </div>
+    <p class="hero__paso">Primero cuéntanos un poco de ti; después eliges tu entrada y pagas.</p>
   </div>
 </section>
 
@@ -132,7 +133,7 @@
       <dl class="ficha" aria-label="Datos de la conferencia">
         <div><dt>Cuándo</dt><dd><time datetime="2026-11-05T17:30">Jueves 5 de noviembre de 2026 · 5:30 pm</time></dd></div>
         <div><dt>Dónde</dt><dd>Hotel Buenavista, Calle 34 #32-34, Mejoras Públicas, Bucaramanga · Presencial</dd></div>
-        <div><dt>Duración</dt><dd>2 horas</dd></div>
+        <div><dt>Duración</dt><dd>2 horas </dd></div>
         <div><dt>Cupos</dt><dd>Cupos limitados</dd></div>
       </dl>
 
@@ -141,21 +142,17 @@
           <h3 id="t1" class="ticket__tipo">Entrada individual</h3>
           <p class="ticket__precio"><span class="ticket__cop">$</span>87.000 <span class="ticket__mon">COP</span></p>
           <p class="ticket__det">Una persona.</p>
-          <a class="btn btn--full btn--claro" href="https://checkout.nequi.wompi.co/l/7AQBAl" target="_blank" rel="noopener">Quiero inscribirme</a>
+          <a class="btn btn--full btn--claro" href="#entradas" data-abrir-form data-entrada="individual" aria-haspopup="dialog">Quiero inscribirme</a>
         </article>
         <article class="ticket ticket--pareja" aria-labelledby="t2">
           <p class="ticket__sello">Primeras 20 parejas</p>
           <h3 id="t2" class="ticket__tipo">Precio especial pareja</h3>
           <p class="ticket__precio"><span class="ticket__cop">$</span>127.000 <span class="ticket__mon">COP</span></p>
           <p class="ticket__det">Dos personas.</p>
-          <a class="btn btn--full btn--caramelo" href="https://checkout.nequi.wompi.co/l/TawNNV" target="_blank" rel="noopener">Quiero inscribirme en pareja</a>
+          <a class="btn btn--full btn--caramelo" href="#entradas" data-abrir-form data-entrada="pareja" aria-haspopup="dialog">Quiero inscribirme en pareja</a>
         </article>
       </div>
-      <p class="entradas__pago">Pago en línea con Wompi; el botón abre la pasarela en una pestaña nueva.</p>
-      <div class="dudas" data-con-js hidden>
-        <p class="dudas__t">¿Aún no decides?</p>
-        <button type="button" class="btn btn--sm btn--linea" data-abrir-form aria-haspopup="dialog">Pide información</button>
-      </div>
+      <p class="entradas__pago">Al tocar tu entrada se abre un formulario corto; al terminarlo, pasas al pago.</p>
     </div>
 
     <div class="entradas__lugar">
@@ -200,6 +197,7 @@
   <div class="sandra__texto">
     <p class="eyebrow">¿Quién es Sandra Grast?</p>
     <h2 id="sandra-titulo" class="h2">Una experiencia que también nació de mi propia historia.</h2>
+    
     <div class="prose">
       <p>Mi nombre es Sandra Grast.</p>
       <p>Soy coach ontológica, conferencista, mentora de vida, educadora y enfermera profesional.</p>
@@ -226,12 +224,12 @@
       <details><summary>¿Tengo que compartir mis asuntos personales con los demás?</summary>
         <p>No es necesario que compartas públicamente asuntos personales. Puedes realizar tu reflexión de manera individual y participar respetando tus propios límites.</p></details>
       <details><summary>¿Cómo puedo inscribirme?</summary>
-        <p>Elige tu entrada en la sección <a href="#entradas">Elige tu entrada</a> y completa el pago en línea con Wompi. <span data-con-js hidden>Si antes quieres más información, <button type="button" class="enlace" data-abrir-form aria-haspopup="dialog">déjanos tus datos</button> y te escribimos.</span></p></details>
+        <p>Primero <button type="button" class="enlace" data-abrir-form aria-haspopup="dialog">completa el formulario</button>; al enviarlo eliges tu entrada (individual o en pareja) y completas el pago en línea con Wompi. </p></details>
     </div>
   </div>
   <div class="cierre" id="inscripcion">
     <p class="cierre__titulo">No tienes que tener todas las respuestas. <span>Pero puedes empezar por hacerte una pregunta diferente.</span></p>
-    <a class="btn btn--lg" href="#entradas">Quiero inscribirme</a>
+    <a class="btn btn--lg" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero inscribirme</a>
     <p class="cierre__nota">Consulta la fecha, el lugar y las condiciones de participación antes de completar tu inscripción.</p>
   </div>
 </section>
@@ -245,7 +243,7 @@
 
 <div class="barra-movil" id="barra-movil">
   <p class="barra-movil__info"><strong>VOLVER A TI</strong><span>5 nov · desde $87.000</span></p>
-  <a class="btn btn--sm btn--caramelo" href="#entradas">Quiero inscribirme</a>
+  <a class="btn btn--sm btn--caramelo" href="#entradas" data-abrir-form aria-haspopup="dialog">Quiero inscribirme</a>
 </div>
 
 <!-- FORMULARIO · hoja modal por pasos (no envía nada todavía: ver enviarFormulario() en js/main.js) -->
@@ -343,18 +341,25 @@
         </div>
         <div class="autoriza">
           <p class="autoriza__t">Autorización para el tratamiento de datos personales</p>
-          <label class="casilla"><input type="checkbox" name="autoriza_datos" value="si" required aria-describedby="err-autoriza"><span>Autorizo el tratamiento de mis datos personales por parte de Sandra Grast / Efecto GRAST para gestionar mi solicitud de información, contactarme en relación con la conferencia Volver a Ti y, si otorgo autorización específica para ello, enviarme información sobre futuras experiencias y actividades. He leído y acepto la política de tratamiento de datos personales.</span></label>
+          <label class="casilla"><input type="checkbox" name="autoriza_datos" value="si" required aria-describedby="err-autoriza"><span>Autorizo el tratamiento de mis datos personales por parte de Sandra Grast / Efecto GRAST para gestionar mi solicitud de información, contactarme en relación con la conferencia Volver a Ti y, si otorgo autorización específica para ello, enviarme información sobre futuras experiencias y actividades. He leído y acepto la política de tratamiento de datos personales. </span></label>
           <span class="campo__err" id="err-autoriza"></span>
           <label class="casilla casilla--opc"><input type="checkbox" name="autoriza_comercial" value="si"><span>Opcional: quiero recibir información sobre futuras experiencias y actividades de Sandra Grast / Efecto GRAST.</span></label>
+          
+          
         </div>
       </fieldset>
 
       <!-- gracias -->
       <div class="gracias" id="hoja-gracias" hidden>
         <svg class="gracias__lazo" viewBox="0 0 600 600" aria-hidden="true" focusable="false"><path d="M300 560c-150 0-250-110-250-250S160 50 300 50s250 110 250 250c0 98-62 170-150 170-74 0-122-54-122-116 0-56 40-96 92-96"/></svg>
-        <p class="gracias__t" id="gracias-t" tabindex="-1">Gracias por tomarte este momento.</p>
-        <p class="gracias__p">Con tus respuestas te compartiremos la información de VOLVER A TI. Nos vemos el 5 de noviembre en el Hotel Buenavista.</p>
-        <p></p>
+        <p class="gracias__t" id="gracias-t" tabindex="-1">Último paso: asegura tu lugar</p>
+        <p class="gracias__p">Ya recibimos tus respuestas. Para reservar tu cupo en VOLVER A TI, elige tu entrada y completa el pago en línea; la pasarela de Wompi se abre en una pestaña nueva.</p>
+        <div class="pagos" role="group" aria-label="Elige tu entrada y paga">
+          <a class="pago" id="pago-individual" data-pago="individual" href="https://checkout.nequi.wompi.co/l/7AQBAl" target="_blank" rel="noopener">
+            <span class="pago__tipo">Pagar entrada individual</span><span class="pago__precio">$87.000</span></a>
+          <a class="pago" id="pago-pareja" data-pago="pareja" href="https://checkout.nequi.wompi.co/l/TawNNV" target="_blank" rel="noopener">
+            <span class="pago__tipo">Pagar entrada en pareja</span><span class="pago__precio">$127.000</span><span class="pago__nota">Primeras 20 parejas</span></a>
+        </div>
       </div>
     </div>
 
@@ -363,14 +368,13 @@
       <button type="submit" class="btn hoja__sig" id="hoja-sig">Siguiente</button>
     </footer>
     <footer class="hoja__pie" id="hoja-pie-fin" hidden>
-      <a class="btn btn--borde" href="#entradas" data-cerrar-form>Ver las entradas</a>
-      <button type="button" class="btn" data-cerrar-form>Cerrar</button>
+      <button type="button" class="btn btn--borde" data-cerrar-form>Cerrar</button>
     </footer>
   </form>
 </dialog>
 
 
 
-<script src="js/main.js?v=3" defer></script>
+<script src="js/main.js?v=4" defer></script>
 </body>
 </html>

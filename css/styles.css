@@ -374,3 +374,23 @@ html.hoja-abierta{overflow:hidden}
 .hoja__pie .btn{min-height:48px}
 .hoja__sig{margin-left:auto;min-width:9.5rem}
 .hoja .btn--borde:hover{color:var(--sobre-verde)}
+
+/* hero: el orden del flujo, dicho una vez */
+.hero__paso{margin-top:var(--s3);font-size:var(--t-s);color:var(--tinta-suave);max-width:34rem}
+
+/* pantalla final: pago tras el formulario */
+.pagos{display:grid;gap:var(--s3);margin-bottom:var(--s4)}
+.pago{display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 var(--s3);min-height:64px;padding:var(--s3) var(--s4);
+  border:1px solid var(--verde);border-radius:var(--r,4px);background:var(--verde);color:var(--sobre-verde);text-decoration:none;
+  transition:background-color var(--d2) var(--curva),color var(--d2) var(--curva),transform var(--d1) var(--curva)}
+.pago__tipo{font-weight:600;font-size:var(--t-m)}
+.pago__precio{font:500 var(--t-l)/1 var(--serif);letter-spacing:-.01em}
+.pago__nota{grid-column:1/-1;font-size:var(--t-xs);opacity:.85}
+.pago:hover{background:var(--verde-hondo)}
+.pago:active{transform:translateY(1px)}
+.pago:focus-visible{outline:3px solid var(--caramelo);outline-offset:3px}
+.pagos[data-elegida] .pago:not(.is-elegida){background:transparent;color:var(--verde);min-height:56px}
+.pagos[data-elegida] .pago:not(.is-elegida) .pago__tipo{font-weight:500;font-size:var(--t-s)}
+.pagos[data-elegida] .pago:not(.is-elegida) .pago__precio{font-size:var(--t-m)}
+.pagos[data-elegida] .pago:not(.is-elegida):hover{background:var(--arena-2)}
+.pago.is-elegida{box-shadow:0 0 0 3px var(--caramelo)}

@@ -56,7 +56,9 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>
-<link rel="stylesheet" href="css/styles.css?v=10">
+<link rel="preload" as="image" type="image/avif" media="(max-width: 55.99rem)" imagesrcset="img/sandra-hero-m-640.avif 640w, img/sandra-hero-m-900.avif 900w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" media="(min-width: 56rem)" imagesrcset="img/sandra-hero-d-720.avif 720w, img/sandra-hero-d-1000.avif 1000w" imagesizes="46vw" fetchpriority="high">
+<link rel="stylesheet" href="css/styles.css?v=20">
 <script>document.documentElement.classList.add('js')</script>
 <!-- Meta Pixel --><script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -81,19 +83,32 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
 
 <main id="contenido">
 
-<!-- 1 · HERO -->
+<!-- 1 · HERO · la foto de Sandra y el lazo que vuelve sobre sí mismo -->
 <section class="hero" id="inicio" aria-labelledby="hero-titulo">
-  <svg class="hero__lazo" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
-    <path d="M300 560c-150 0-250-110-250-250S160 50 300 50s250 110 250 250c0 98-62 170-150 170-74 0-122-54-122-116 0-56 40-96 92-96"/>
-  </svg>
+  <figure class="hero__foto" id="hero-foto">
+    <picture>
+      <source media="(min-width: 56rem)" type="image/avif" srcset="img/sandra-hero-d-720.avif 720w, img/sandra-hero-d-1000.avif 1000w" sizes="(min-width: 56rem) 46vw">
+      <source media="(min-width: 56rem)" type="image/webp" srcset="img/sandra-hero-d-720.webp 720w, img/sandra-hero-d-1000.webp 1000w" sizes="(min-width: 56rem) 46vw">
+      <source type="image/avif" srcset="img/sandra-hero-m-640.avif 640w, img/sandra-hero-m-900.avif 900w" sizes="100vw">
+      <source type="image/webp" srcset="img/sandra-hero-m-640.webp 640w, img/sandra-hero-m-900.webp 900w" sizes="100vw">
+      <img class="hero__img" src="img/sandra-hero-m-900.webp" width="900" height="788" fetchpriority="high" decoding="async" alt="Sandra Grast sonríe de frente a la cámara, con camiseta celeste, delante de un arbusto con flores moradas y blancas en un jardín">
+    </picture>
+    <svg class="hero__lazo hero__lazo--m" viewBox="0 0 900 788" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <path d="M90 868C112 740 152 596 196 460 246 290 330 165 470 150 625 133 760 225 745 360 735 455 655 480 625 410 598 345 640 245 760 205"/>
+    </svg>
+    <svg class="hero__lazo hero__lazo--d" viewBox="0 0 1000 1250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <path d="M-210 1060C-40 1010 170 880 250 640 330 420 380 200 570 184 725 167 860 259 845 394 835 489 755 514 725 444 698 379 740 279 860 239"/>
+    </svg>
+  </figure>
+
   <div class="hero__in">
     <p class="hero__kicker">Sandra Grast · Conferencia experiencial</p>
     <h1 id="hero-titulo" class="hero__title"><span class="hero__l1">Volver</span> <span class="hero__l2">a&nbsp;ti</span></h1>
     <p class="hero__sub">Cuando seguir igual ya no es una opción.</p>
     <p class="hero__data">
       <time datetime="2026-11-25T17:30">Miércoles 25 de noviembre · 5:30 pm</time>
-      <span aria-hidden="true">·</span> Hotel Buenavista, Bucaramanga
-      <span aria-hidden="true">·</span> Presencial
+      <span class="hero__sep" aria-hidden="true">·</span> <span>Hotel Buenavista, Bucaramanga</span>
+      <span class="hero__sep" aria-hidden="true">·</span> <span>Presencial</span>
     </p>
     <div class="hero__ctas">
       <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="hero" aria-haspopup="dialog">Quiero vivir esta experiencia</a>
@@ -103,66 +118,55 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
   </div>
 </section>
 
-
-<!-- 2 · TE RECONOCES -->
+<!-- 2 · TE RECONOCES + pregunta 1 a un toque -->
 <section class="sec reconoces" id="reconoces" aria-labelledby="rec-titulo">
-  <h2 id="rec-titulo" class="h2">¿Te reconoces en alguna de estas situaciones?</h2>
-  <ul class="espejo reveal">
-    <li>Cumples con tus responsabilidades, pero sientes que has dejado tus propias necesidades para después.</li>
-    <li>Sabes que hay cosas que necesitas cambiar, pero sigues aplazando el momento de hacerlo.</li>
-    <li>Te cuesta decir que no, poner límites o dejar de responder a las expectativas de los demás.</li>
-    <li>Te preguntas cuándo fue la última vez que te detuviste a pensar qué quieres realmente para tu vida.</li>
-  </ul>
-  <p class="cita cita--m reconoces__cierre">Y quizá ha llegado el momento de observarlo.</p>
-</section>
+  <div class="reconoces__in">
+    <h2 id="rec-titulo" class="h2 reconoces__t">¿Te reconoces en alguna de estas situaciones?</h2>
+    <ul class="espejo reveal">
+      <li>Cumples con tus responsabilidades, pero sientes que has dejado tus propias necesidades para después.</li>
+      <li>Sabes que hay cosas que necesitas cambiar, pero sigues aplazando el momento de hacerlo.</li>
+      <li>Te preguntas cuándo fue la última vez que te detuviste a pensar qué quieres realmente para tu vida.</li>
+    </ul>
+    <p class="reconoces__cierre">Y quizá ha llegado el momento de observarlo.</p>
 
-<!-- CAPTACIÓN INLINE · la primera pregunta del formulario, a un toque -->
-<section class="sec captar" id="empezar" aria-labelledby="captar-titulo" data-con-js hidden>
-  <div class="captar__in">
-    <p class="eyebrow">Para inscribirte · pregunta 1 de 6</p>
-    <h2 id="captar-titulo" class="captar__q">¿A qué te dedicas actualmente?</h2>
-    <div class="captar__ops" role="group" aria-labelledby="captar-titulo">
-      <button type="button" class="captar__op" data-ocupacion="Soy empleado/a o profesional." aria-haspopup="dialog">Soy empleado/a o profesional</button>
-      <button type="button" class="captar__op" data-ocupacion="Soy emprendedor/a o tengo mi propio negocio." aria-haspopup="dialog">Soy emprendedor/a o tengo mi propio negocio</button>
-      <button type="button" class="captar__op" data-ocupacion="Soy independiente o consultor/a." aria-haspopup="dialog">Soy independiente o consultor/a</button>
-      <button type="button" class="captar__op" data-ocupacion="Trabajo en el sector salud." aria-haspopup="dialog">Trabajo en el sector salud</button>
-      <button type="button" class="captar__op" data-ocupacion="Actualmente estoy estudiando." aria-haspopup="dialog">Actualmente estoy estudiando</button>
-      <button type="button" class="captar__op" data-ocupacion="Estoy en un proceso de cambio profesional o personal." aria-haspopup="dialog">Estoy en un proceso de cambio profesional o personal</button>
-      <button type="button" class="captar__op" data-ocupacion="Otra ocupación." aria-haspopup="dialog">Otra ocupación</button>
+    <div class="captar" id="empezar" data-con-js hidden>
+      <p class="captar__eyebrow">Para inscribirte · pregunta 1 de 6</p>
+      <p id="captar-titulo" class="captar__q">¿A qué te dedicas actualmente?</p>
+      <div class="captar__ops" role="group" aria-labelledby="captar-titulo">
+        <button type="button" class="captar__op" data-ocupacion="Soy empleado/a o profesional." aria-haspopup="dialog">Soy empleado/a o profesional</button>
+        <button type="button" class="captar__op" data-ocupacion="Soy emprendedor/a o tengo mi propio negocio." aria-haspopup="dialog">Soy emprendedor/a o tengo mi propio negocio</button>
+        <button type="button" class="captar__op" data-ocupacion="Soy independiente o consultor/a." aria-haspopup="dialog">Soy independiente o consultor/a</button>
+        <button type="button" class="captar__op" data-ocupacion="Trabajo en el sector salud." aria-haspopup="dialog">Trabajo en el sector salud</button>
+        <button type="button" class="captar__op" data-ocupacion="Actualmente estoy estudiando." aria-haspopup="dialog">Actualmente estoy estudiando</button>
+        <button type="button" class="captar__op" data-ocupacion="Estoy en un proceso de cambio profesional o personal." aria-haspopup="dialog">Estoy en un proceso de cambio profesional o personal</button>
+        <button type="button" class="captar__op" data-ocupacion="Otra ocupación." aria-haspopup="dialog">Otra ocupación</button>
+      </div>
     </div>
-    <p class="captar__nota">Al elegir, sigues con el formulario; al terminarlo eliges tu entrada y pagas.</p>
   </div>
 </section>
 
 <!-- 3 · QUÉ VIVIRÁS -->
 <section class="sec vivir" id="experiencia" aria-labelledby="vivir-titulo">
-  <div class="vivir__a">
-    <p class="eyebrow">Conferencia experiencial de reflexión y descubrimiento personal</p>
+  <div class="vivir__in">
     <h2 id="vivir-titulo" class="vivir__titulo"><span>No vienes solamente a escuchar.</span> <span class="vivir__b">Vienes a participar.</span></h2>
-    <p class="lead">VOLVER A TI es una experiencia para detenerte, reconocerte y cuestionar aquello que has estado sosteniendo, para comenzar a elegir qué quieres construir a partir de ahora.</p>
-  </div>
-  <div class="vivir__z">
     <ol class="pasos reveal" aria-label="Qué puedes descubrir durante la conferencia">
       <li>Reconocer cómo estás viviendo.</li>
       <li>Identificar patrones de interpretación y respuesta.</li>
-      <li>Cuestionar las ideas que tienes sobre ti.</li>
       <li>Definir una primera acción.</li>
     </ol>
-    <p class="aviso">VOLVER A TI no es una fórmula mágica que resolverá todos tus problemas en una sola sesión. No es un sustituto de la atención psicológica o de otros servicios profesionales de salud cuando estos son necesarios.</p>
+    <p class="aviso">No es un sustituto de la atención psicológica o de otros servicios profesionales de salud cuando estos son necesarios.</p>
   </div>
 </section>
 
 <!-- 4 · ENTRADAS + INFO PRÁCTICA + CÓMO LLEGAR -->
 <section class="sec entradas" id="entradas" aria-labelledby="ent-titulo">
-  <h2 id="ent-titulo" class="h2 h2--claro">Elige tu entrada</h2>
-
   <div class="entradas__grid">
     <div class="entradas__info">
+      <div class="entradas__cab"><h2 id="ent-titulo" class="h2 h2--claro">Elige tu entrada</h2><p class="entradas__cupos">Cupos limitados</p></div>
       <dl class="ficha" aria-label="Datos de la conferencia">
         <div><dt>Cuándo</dt><dd><time datetime="2026-11-25T17:30">Miércoles 25 de noviembre de 2026 · 5:30 pm</time></dd></div>
         <div><dt>Dónde</dt><dd>Hotel Buenavista, Calle 34 #32-34, Mejoras Públicas, Bucaramanga · Presencial</dd></div>
         <div><dt>Duración</dt><dd>2 horas <span class="falta">[FALTA: confirmar duración (2 h vs 90 min)]</span></dd></div>
-        <div><dt>Cupos</dt><dd>Cupos limitados</dd></div>
       </dl>
 
       <div class="tickets">
@@ -214,57 +218,53 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <p class="entradas__pend"><span class="falta">[FALTA: confirmar que $127.000 es por pareja y si los cupos se cuentan por persona o por entrada · hora de finalización ·confirmar dirección y nombre del salón con el hotel · medios de pago aceptados (PSE, Nequi, tarjeta) · qué incluye la entrada · qué recibe el comprador tras pagar · política de cambios y reembolsos]</span></p>
+  <p class="entradas__pend"><span class="falta">[FALTA: confirmar que $127.000 es por pareja y si los cupos se cuentan por persona o por entrada · hora de finalización ·confirmar dirección y nombre del salón con el hotel · medios de pago aceptados (PSE, Nequi, tarjeta) · qué incluye la entrada · qué recibe el comprador tras pagar · política de cambios y reembolsos · procedimiento definitivo de inscripción y pago: qué pasa después de pagar]</span></p>
 </section>
 
-<!-- 5 · SANDRA + EFECTO GRAST -->
+<!-- 5 · SANDRA + EFECTO GRAST + FAQ + CIERRE -->
 <section class="sec sandra" id="sandra" aria-labelledby="sandra-titulo">
-  <figure class="sandra__foto">
-    <img class="foto" src="img/sandra-retrato.webp" width="1000" height="1111" loading="lazy" decoding="async" alt="Sandra Grast sonriendo en un jardín, con camiseta celeste">
-  </figure>
-  <div class="sandra__texto">
-    <p class="eyebrow">¿Quién es Sandra Grast?</p>
-    <h2 id="sandra-titulo" class="h2">Una experiencia que también nació de mi propia historia.</h2>
-    <p class="falta falta--bloque">[FALTA: confirmar que Sandra se siente cómoda publicando este relato personal y que representa fielmente su historia · fotografía profesional definitiva de Sandra (esta es provisional)]</p>
-    <div class="prose">
-      <p>Mi nombre es Sandra Grast.</p>
-      <p>Soy coach ontológica, conferencista, mentora de vida, educadora y enfermera profesional.</p>
-      <p>No hablo desde la idea de tener todas las respuestas. Hablo desde la experiencia de haber tenido que hacerme preguntas que cambiaron mi manera de mirar la vida.</p>
+  <div class="sandra__in">
+    <div class="sandra__texto">
+      <p class="eyebrow">¿Quién es Sandra Grast?</p>
+      <h2 id="sandra-titulo" class="h2 sandra__t">Una experiencia que también nació de mi propia historia.</h2>
+      <p class="falta falta--bloque">[FALTA: confirmar que Sandra se siente cómoda publicando este relato personal y que representa fielmente su historia]</p>
+      <div class="prose">
+        <p>Mi nombre es Sandra Grast. Soy coach ontológica, conferencista, mentora de vida, educadora y enfermera profesional.</p>
+        <p class="prose__voz">No hablo desde la idea de tener todas las respuestas. Hablo desde la experiencia de haber tenido que hacerme preguntas que cambiaron mi manera de mirar la vida.</p>
+      </div>
+      <div class="grast" id="efecto-grast">
+        <p class="grast__t">El recorrido de <strong>Efecto GRAST</strong> integra siete movimientos:</p>
+        <ol class="chips" aria-label="Los siete movimientos de Efecto GRAST">
+          <li>Conocerme</li><li>Aceptarme</li><li>Reconocerme</li><li>Soltar</li><li>Elegir</li><li>Actuar</li><li>Sostener</li>
+        </ol>
+      </div>
     </div>
-    <div class="grast" id="efecto-grast">
-      <p class="grast__t">El recorrido de <strong>Efecto GRAST</strong> integra siete movimientos:</p>
-      <ol class="chips" aria-label="Los siete movimientos de Efecto GRAST">
-        <li>Conocerme</li><li>Aceptarme</li><li>Reconocerme</li><li>Soltar</li><li>Elegir</li><li>Actuar</li><li>Sostener</li>
-      </ol>
-    </div>
-  </div>
-</section>
 
-<!-- 6-7 · FAQ + CIERRE -->
-<section class="sec faq" id="preguntas" aria-labelledby="faq-titulo">
-  <div class="faq__col">
-    <h2 id="faq-titulo" class="h2">Preguntas frecuentes</h2>
-    <div class="faq__list">
-      <details><summary>¿Es una conferencia motivacional?</summary>
-        <p>No está concebida como una charla motivacional tradicional. Es una experiencia participativa que combina preguntas, situaciones cotidianas y ejercicios de reflexión.</p></details>
-      <details><summary>¿Necesito tener experiencia previa en coaching o desarrollo personal?</summary>
-        <p>No. La experiencia está planteada para que puedas participar desde tu propia vida, sin necesidad de conocimientos previos.</p></details>
-      <details><summary>¿Tengo que compartir mis asuntos personales con los demás?</summary>
-        <p>No es necesario que compartas públicamente asuntos personales. Puedes realizar tu reflexión de manera individual y participar respetando tus propios límites.</p></details>
-      <details><summary>¿Cómo puedo inscribirme?</summary>
-        <p>Primero <button type="button" class="enlace" data-abrir-form data-origen="faq" aria-haspopup="dialog">completa el formulario</button>; al enviarlo eliges tu entrada (individual o en pareja) y completas el pago en línea con Wompi. <span class="falta">[FALTA: procedimiento definitivo de inscripción y pago: qué pasa después de pagar]</span></p></details>
+    <div class="faq" id="preguntas">
+      <h3 class="faq__t">Preguntas frecuentes</h3>
+      <div class="faq__list">
+        <details><summary>¿Es una conferencia motivacional?</summary>
+          <p>No está concebida como una charla motivacional tradicional. Es una experiencia participativa que combina preguntas, situaciones cotidianas y ejercicios de reflexión.</p></details>
+        <details><summary>¿Necesito tener experiencia previa en coaching o desarrollo personal?</summary>
+          <p>No. La experiencia está planteada para que puedas participar desde tu propia vida, sin necesidad de conocimientos previos.</p></details>
+        <details><summary>¿Tengo que compartir mis asuntos personales con los demás?</summary>
+          <p>No es necesario que compartas públicamente asuntos personales. Puedes realizar tu reflexión de manera individual y participar respetando tus propios límites.</p></details>
+      </div>
     </div>
   </div>
+
   <div class="cierre" id="inscripcion">
     <p class="cierre__titulo">No tienes que tener todas las respuestas. <span>Pero puedes empezar por hacerte una pregunta diferente.</span></p>
-    <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="cierre" aria-haspopup="dialog">Quiero inscribirme</a>
-    <p class="cierre__nota">Consulta la fecha, el lugar y las condiciones de participación antes de completar tu inscripción.</p>
+    <div class="cierre__accion">
+      <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="cierre" aria-haspopup="dialog">Quiero inscribirme</a>
+      <p class="cierre__nota">Consulta la fecha, el lugar y las condiciones de participación antes de completar tu inscripción.</p>
+    </div>
   </div>
 </section>
 
 <section class="franja" aria-labelledby="franja-titulo">
   <p id="franja-titulo" class="franja__t">Cuéntanos un poco de ti y asegura tu lugar</p>
-  <a class="btn btn--caramelo" href="#entradas" data-abrir-form data-origen="footer" aria-haspopup="dialog">Empezar el formulario</a>
+  <a class="btn btn--sm btn--caramelo" href="#entradas" data-abrir-form data-origen="footer" aria-haspopup="dialog">Empezar el formulario</a>
 </section>
 
 </main>
@@ -396,9 +396,9 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
         <p class="gracias__t" id="gracias-t" tabindex="-1">Último paso: asegura tu lugar</p>
         <p class="gracias__p">Ya recibimos tus respuestas. Para reservar tu cupo en VOLVER A TI, elige tu entrada y completa el pago en línea; la pasarela de Wompi se abre en una pestaña nueva.</p>
         <div class="pagos" role="group" aria-label="Elige tu entrada y paga">
-          <a class="pago" id="pago-individual" data-pago="individual" href="https://checkout.nequi.wompi.co/l/7AQBAl" target="_blank" rel="noopener">
+          <a class="pago" id="pago-individual" data-pago="individual" aria-label="Pagar entrada individual, 87.000 pesos, en Wompi (se abre en una pestaña nueva)" href="https://checkout.nequi.wompi.co/l/7AQBAl" target="_blank" rel="noopener">
             <span class="pago__tipo">Pagar entrada individual</span><span class="pago__precio">$87.000</span></a>
-          <a class="pago" id="pago-pareja" data-pago="pareja" href="https://checkout.nequi.wompi.co/l/TawNNV" target="_blank" rel="noopener">
+          <a class="pago" id="pago-pareja" data-pago="pareja" aria-label="Pagar entrada en pareja, 127.000 pesos, primeras 20 parejas, en Wompi (se abre en una pestaña nueva)" href="https://checkout.nequi.wompi.co/l/TawNNV" target="_blank" rel="noopener">
             <span class="pago__tipo">Pagar entrada en pareja</span><span class="pago__precio">$127.000</span><span class="pago__nota">Primeras 20 parejas</span></a>
         </div>
       </div>
@@ -420,6 +420,6 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
   <ol id="rev-lista"></ol>
 </section>
 
-<script src="js/main.js?v=5" defer></script>
+<script src="js/main.js?v=20" defer></script>
 </body>
 </html>

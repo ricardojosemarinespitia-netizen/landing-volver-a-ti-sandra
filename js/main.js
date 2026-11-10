@@ -1,27 +1,34 @@
 (function () {
   'use strict';
 
-  /* firma: el lazo que vuelve sobre sí mismo se dibuja una vez */
-  var lazo = document.querySelector('.hero__lazo');
-  if (lazo) {
-    var lp = lazo.querySelector('path');
-    lazo.style.setProperty('--len', Math.ceil(lp.getTotalLength()));
-    lazo.classList.add('is-trazo');
-  }
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* nav + barra móvil: un listener pasivo, trabajo en rAF */
+  /* firma: el lazo caramelo rodea a Sandra y vuelve sobre sí mismo; se dibuja una vez.
+     Hay dos trazos (móvil / escritorio) en coordenadas de su recorte de foto. */
+  [].forEach.call(document.querySelectorAll('.hero__lazo'), function (lazo) {
+    var lp = lazo.querySelector('path');
+    lazo.style.setProperty('--len', Math.ceil(lp.getTotalLength()) + 2);
+    lazo.classList.add('is-trazo');
+  });
+
+  /* nav + barra móvil + parallax contenido del retrato: un listener pasivo, trabajo en rAF */
   var nav = document.getElementById('nav');
   var barra = document.getElementById('barra-movil');
   var zonas = [document.getElementById('entradas'), document.getElementById('inscripcion')];
   var flotante = document.getElementById('flotante');
+  var heroFoto = document.getElementById('hero-foto');
+  /* cinta «¿Te quedó alguna duda?»: solo pasado el 55 % del recorrido, una vez por sesión */
+  var UMBRAL_CINTA = 0.55;
   var cinta = document.getElementById('cinta');
   var cintaVista = false;
   try { cintaVista = sessionStorage.getItem('vat-cinta') === '1'; } catch (e) {}
-  function cerrarCinta() {
-    cinta.hidden = true; cintaVista = true;
+  function marcarCintaVista() {
+    cintaVista = true;
     try { sessionStorage.setItem('vat-cinta', '1'); } catch (e) {}
   }
+  function cerrarCinta() { cinta.hidden = true; marcarCintaVista(); }
   if (cinta) {
+    cinta.hidden = true;
     document.getElementById('cinta-x').addEventListener('click', cerrarCinta);
     cinta.querySelector('.cinta__ir').addEventListener('click', cerrarCinta);
   }
@@ -35,8 +42,11 @@
       var mostrarCta = y > innerHeight * 0.7 && !zonas.some(visible);
       barra.classList.toggle('is-on', mostrarCta);
       if (flotante) flotante.classList.toggle('is-on', mostrarCta);
+      if (heroFoto && !reduce && y < innerHeight * 1.2) heroFoto.style.transform = 'translate3d(0,' + Math.min(y * 0.12, 60).toFixed(1) + 'px,0)';
       var alto = document.documentElement.scrollHeight - innerHeight;
-      if (cinta && !cintaVista && !document.documentElement.classList.contains('hoja-abierta') && alto > 0 && y / alto >= 0.6) { cinta.hidden = false; cintaVista = true; }
+      if (cinta && !cintaVista && y > 0 && !document.documentElement.classList.contains('hoja-abierta') && alto > 0 && y / alto >= UMBRAL_CINTA) {
+        cinta.hidden = false; marcarCintaVista();
+      }
       tick = false;
     });
   }

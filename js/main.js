@@ -1,7 +1,10 @@
 (function () {
   'use strict';
 
+  window.__vat = 1; /* avisa al respaldo del <head> de que el script sí cargó */
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* el parallax del retrato solo en pantallas con puntero fino (en táctiles gasta batería y no se nota) */
+  var parallax = !reduce && window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   /* firma: el lazo caramelo rodea a Sandra y vuelve sobre sí mismo; se dibuja una vez.
      Hay dos trazos (móvil / escritorio) en coordenadas de su recorte de foto. */
@@ -33,19 +36,30 @@
     cinta.querySelector('.cinta__ir').addEventListener('click', cerrarCinta);
   }
   var tick = false;
-  function visible(el) { var r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; }
+  var zonaVista = [false, false];
+  if ('IntersectionObserver' in window) {
+    var ioZ = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { zonaVista[zonas.indexOf(e.target)] = e.isIntersecting; });
+      onScroll();
+    });
+    zonas.forEach(function (z) { if (z) ioZ.observe(z); });
+  }
+  function algunaZona() {
+    if ('IntersectionObserver' in window) return zonaVista[0] || zonaVista[1];
+    return zonas.some(function (el) { var r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; });
+  }
   function onScroll() {
     if (tick) return; tick = true;
     requestAnimationFrame(function () {
       var y = window.scrollY;
       nav.classList.toggle('is-scrolled', y > 8);
-      var mostrarCta = y > innerHeight * 0.7 && !zonas.some(visible);
+      var mostrarCta = y > innerHeight * 0.7 && !algunaZona();
       barra.classList.toggle('is-on', mostrarCta);
       if (flotante) flotante.classList.toggle('is-on', mostrarCta);
-      if (heroFoto && !reduce && y < innerHeight * 1.2) heroFoto.style.transform = 'translate3d(0,' + Math.min(y * 0.12, 60).toFixed(1) + 'px,0)';
-      var alto = document.documentElement.scrollHeight - innerHeight;
-      if (cinta && !cintaVista && y > 0 && !document.documentElement.classList.contains('hoja-abierta') && alto > 0 && y / alto >= UMBRAL_CINTA) {
-        cinta.hidden = false; marcarCintaVista();
+      if (heroFoto && parallax && y < innerHeight * 1.2) heroFoto.style.transform = 'translate3d(0,' + Math.min(y * 0.12, 60).toFixed(1) + 'px,0)';
+      if (cinta && !cintaVista && y > innerHeight * 0.5 && !document.documentElement.classList.contains('hoja-abierta')) {
+        var alto = document.documentElement.scrollHeight - innerHeight;
+        if (alto > 0 && y / alto >= UMBRAL_CINTA) { cinta.hidden = false; marcarCintaVista(); }
       }
       tick = false;
     });
@@ -103,7 +117,17 @@
   }
 
   var hoja = document.getElementById('form-volver');
-  if (hoja && typeof hoja.showModal === 'function') {
+  /* respaldo para navegadores sin <dialog> (Safari < 15.4, WebView muy viejos): mismo flujo, sin fondo nativo */
+  if (hoja && typeof hoja.showModal !== 'function') {
+    document.documentElement.classList.add('hoja-poly');
+    hoja.showModal = function () { hoja.setAttribute('open', ''); };
+    hoja.close = function () { hoja.removeAttribute('open'); };
+    Object.defineProperty(hoja, 'open', { get: function () { return hoja.hasAttribute('open'); } });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && hoja.hasAttribute('open')) hoja.dispatchEvent(new Event('cancel', { cancelable: true }));
+    });
+  }
+  if (hoja) {
     var form = document.getElementById('form-volver-f');
     var pasos = [].slice.call(hoja.querySelectorAll('.paso'));
     var total = pasos.length;
@@ -275,6 +299,7 @@
         hoja.close();
         cerrando = false;
         document.documentElement.classList.remove('hoja-abierta');
+        hoja.style.removeProperty('--teclado'); hoja.style.removeProperty('--alto-vv');
         if (destino) {
           var el = document.querySelector(destino);
           if (el) { el.scrollIntoView(); el.setAttribute('tabindex', '-1'); el.focus({ preventScroll: true }); }
@@ -283,6 +308,22 @@
         }
       }, DUR + 30);
     }
+
+    /* teclado en pantalla (iOS no encoge la ventana): la hoja sube sobre el teclado y el botón no se tapa */
+    var vv = window.visualViewport;
+    function ajustarTeclado() {
+      if (!vv || !hoja.open) return;
+      var tapado = Math.max(0, Math.round(innerHeight - vv.height - vv.offsetTop));
+      hoja.style.setProperty('--teclado', tapado + 'px');
+      hoja.style.setProperty('--alto-vv', Math.round(vv.height) + 'px');
+    }
+    if (vv) { vv.addEventListener('resize', ajustarTeclado); vv.addEventListener('scroll', ajustarTeclado); }
+    form.addEventListener('focusin', function (e) {
+      var t = e.target;
+      if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA') && t.type !== 'radio' && t.type !== 'checkbox') {
+        setTimeout(function () { ajustarTeclado(); try { t.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (x) { t.scrollIntoView(); } }, 320);
+      }
+    });
 
     document.querySelectorAll('[data-abrir-form]').forEach(function (b) { b.addEventListener('click', abrir); });
 
@@ -306,7 +347,7 @@
   }
 
   /* panel de revisión (?revision=1) */
-  if (/[?&]revision=1\b/.test(location.search)) {
+  if (/[?&]revision=1\b/.test(location.search) && document.getElementById('revision')) {
     var panel = document.getElementById('revision');
     var lista = document.getElementById('rev-lista');
     var vistos = {};

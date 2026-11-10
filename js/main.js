@@ -53,8 +53,8 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* reveal por bloque */
-  var revs = document.querySelectorAll('.reveal');
+  /* reveal por bloque + dibujos de línea que se trazan al entrar (pathLength=1 en el SVG) */
+  var revs = document.querySelectorAll('.reveal, .dibujo');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });

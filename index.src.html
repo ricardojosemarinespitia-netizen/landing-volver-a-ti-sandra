@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap">
 <link rel="preload" as="image" type="image/avif" media="(max-width: 55.99rem)" imagesrcset="img/sandra-hero-m-640.avif 640w, img/sandra-hero-m-900.avif 900w" imagesizes="100vw" fetchpriority="high">
 <link rel="preload" as="image" type="image/avif" media="(min-width: 56rem)" imagesrcset="img/sandra-hero-d-720.avif 720w, img/sandra-hero-d-1000.avif 1000w" imagesizes="46vw" fetchpriority="high">
-<link rel="stylesheet" href="css/styles.css?v=20">
+<link rel="stylesheet" href="css/styles.css?v=21">
 <script>document.documentElement.classList.add('js')</script>
 <!-- Meta Pixel --><script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -65,20 +65,46 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
       <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="hero" aria-haspopup="dialog">Quiero vivir esta experiencia</a>
       <p class="hero__precio">Desde <strong>$87.000</strong> · Cupos limitados</p>
     </div>
-    <p class="hero__paso">Primero cuéntanos un poco de ti; después eliges tu entrada y pagas.</p>
   </div>
 </section>
 
+<!-- iconos de línea (sprite, decorativos) -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-ojo" viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-bucle" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 13-5.1M18 3v4h-4M19.5 12a7.5 7.5 0 0 1-13 5.1M6 21v-4h4"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><path d="M7 3h10M7 21h10M8 3c0 5 8 6 8 9s-8 4-8 9M16 3c0 5-8 6-8 9s8 4 8 9M10 18.5h4"/></symbol>
+  <symbol id="i-piedras" viewBox="0 0 24 24"><ellipse cx="12" cy="18" rx="7.5" ry="2.8"/><ellipse cx="12" cy="12.4" rx="5.2" ry="2.4"/><ellipse cx="12" cy="7.4" rx="3.2" ry="2"/><path d="M12 5.4V3"/></symbol>
+  <symbol id="i-espiral" viewBox="0 0 24 24"><path d="M12 12.5c.9-.9 2.3 0 1.8 1.3-.6 1.5-3 1.6-3.8 0-1-2 .6-4.3 3-4.3 3 0 4.6 3 3.6 5.7-1.2 3.3-5.6 4.4-8.4 2.2C5 15.2 5 10 8.3 7.3 11.6 4.6 17 5 19.5 8.6"/></symbol>
+  <symbol id="i-sendero" viewBox="0 0 24 24"><path d="M3.5 20.5c3.5-.5 5.5-3 7-6s3.8-6.2 8-7.5M14.5 4h5v5"/><circle cx="4.5" cy="20.2" r=".6"/></symbol>
+  <symbol id="i-mano" viewBox="0 0 24 24"><path d="M7.5 13V6.5a1.5 1.5 0 0 1 3 0V11.5M10.5 11V4.5a1.5 1.5 0 0 1 3 0V11M13.5 11V5.8a1.5 1.5 0 0 1 3 0V12M16.5 12.2V9a1.5 1.5 0 0 1 3 0v5c0 4-3 7-7 7-3 0-5-1.6-6.4-3.8L3.6 13.4c-.7-1.2.8-2.5 1.9-1.6l2 1.7"/></symbol>
+  <symbol id="i-espejo" viewBox="0 0 24 24"><ellipse cx="12" cy="9.5" rx="5.5" ry="7"/><path d="M12 16.5V21M8.5 21h7M9.6 6.6c.7-1 1.7-1.5 2.9-1.4"/></symbol>
+  <symbol id="i-hoja" viewBox="0 0 24 24"><path d="M5 5.5c6.2-1.6 12 2.3 11.6 8.9C10.3 15.6 4.6 11.7 5 5.5zM5 5.5l8.6 7.4M3 3l2 2.5M18.5 18c.8.8 1.5 1.6 2.5 2"/></symbol>
+  <symbol id="i-cruce" viewBox="0 0 24 24"><path d="M12 21v-7M12 14c0-4-5.5-4.6-6.5-9M12 14c0-4 5.5-4.6 6.5-9M3.8 6.6l1.7-1.8 1.9 1.6M16.6 6.4l1.9-1.6 1.7 1.8"/></symbol>
+  <symbol id="i-paso" viewBox="0 0 24 24"><path d="M7.6 20.5c-1.8 0-2.7-1.6-2.7-3.6 0-2.6 1-5.6 2.8-5.6s2.7 2.5 2.6 5.2c0 2.2-.9 4-2.7 4zM16.4 13c-1.8 0-2.7-1.6-2.7-3.6 0-2.6 1-5.6 2.8-5.6s2.7 2.5 2.6 5.2c0 2.2-.9 4-2.7 4z"/></symbol>
+  <symbol id="i-raiz" viewBox="0 0 24 24"><path d="M12 3.5V21M12 16c-1.6 2-4.6 2-6.5 4.2M12 16c1.6 2 4.6 2 6.5 4.2M12 9c-2-1.6-4.5-1.5-5.8.2 2 1.4 4.2 1.4 5.8-.2zM12 7c1.8-1.8 4.4-1.9 5.8-.3-1.9 1.6-4.2 1.8-5.8.3z"/></symbol>
+</svg>
+
 <!-- 2 · TE RECONOCES + pregunta 1 a un toque -->
 <section class="sec reconoces" id="reconoces" aria-labelledby="rec-titulo">
+  <svg class="ola" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0h1440v14c-160 18-330 22-520 8S540 2 360 14 120 30 0 18z"/></svg>
   <div class="reconoces__in">
-    <h2 id="rec-titulo" class="h2 reconoces__t">¿Te reconoces en alguna de estas situaciones?</h2>
+    <div class="reconoces__cab">
+      <h2 id="rec-titulo" class="h2 reconoces__t">¿Te reconoces?</h2>
+      <p class="reconoces__cierre">Y quizá ha llegado el momento de observarlo.</p>
+      <!-- silueta: mujer de perfil frente al espejo -->
+      <svg class="figura figura--espejo dibujo" viewBox="0 0 260 320" aria-hidden="true" focusable="false">
+        <path class="f-acento" pathLength="1" d="M216 58c21 0 38 28 38 62s-17 62-38 62-38-28-38-62 17-62 38-62zM216 182v118M191 300h50"/>
+        <path class="f-reflejo" pathLength="1" d="M237 78c-11 2-17 11-16 21l-5 6c3 1 4 3 3 5 2 1 2 3 1 5 3 7 9 11 17 11"/>
+        <path pathLength="1" d="M62 320c2-40-2-84 8-128 6-26 16-44 24-58-12-10-17-28-12-46 6-24 30-38 54-30 14 5 22 17 23 31 1 6 3 10 9 17l-7 3c2 2 2 4 0 6 3 2 2 5-1 6 1 8-3 15-12 17-6 1-9 5-9 11 0 7 3 12 10 17 14 9 22 22 22 42 0 26-14 40-14 68 0 18 4 32 6 50"/>
+        <path pathLength="1" d="M86 72c-14 2-22 14-18 28 2 9 10 12 16 10"/>
+        <path pathLength="1" d="M112 170C106 196 104 222 114 234 124 242 140 226 150 206l9-5"/>
+      </svg>
+    </div>
     <ul class="espejo reveal">
-      <li>Cumples con tus responsabilidades, pero sientes que has dejado tus propias necesidades para después.</li>
-      <li>Sabes que hay cosas que necesitas cambiar, pero sigues aplazando el momento de hacerlo.</li>
-      <li>Te preguntas cuándo fue la última vez que te detuviste a pensar qué quieres realmente para tu vida.</li>
+      <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-piedras"/></svg><span>Cumples con tus responsabilidades, pero sientes que has dejado tus propias necesidades para después.</span></li>
+      <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-bucle"/></svg><span>Repites comportamientos o decisiones que ya no te hacen sentir bien.</span></li>
+      <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-reloj"/></svg><span>Sabes que hay cosas que necesitas cambiar, pero sigues aplazando el momento de hacerlo.</span></li>
     </ul>
-    <p class="reconoces__cierre">Y quizá ha llegado el momento de observarlo.</p>
 
     <div class="captar" id="empezar" data-con-js hidden>
       <p class="captar__eyebrow">Para inscribirte · pregunta 1 de 6</p>
@@ -98,19 +124,27 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
 
 <!-- 3 · QUÉ VIVIRÁS -->
 <section class="sec vivir" id="experiencia" aria-labelledby="vivir-titulo">
+  <svg class="ola ola--arena" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0h1440v20c-200-16-380 14-600 6S420-2 240 10 60 26 0 16z"/></svg>
   <div class="vivir__in">
     <h2 id="vivir-titulo" class="vivir__titulo"><span>No vienes solamente a escuchar.</span> <span class="vivir__b">Vienes a participar.</span></h2>
+    <figure class="arco dibujo">
+      <picture>
+        <source type="image/avif" srcset="img/sandra-arbol-480.avif 480w, img/sandra-arbol-720.avif 720w" sizes="(min-width: 56rem) 22rem, 40vw">
+        <img class="arco__img" src="img/sandra-arbol-480.webp" srcset="img/sandra-arbol-480.webp 480w, img/sandra-arbol-720.webp 720w" sizes="(min-width: 56rem) 22rem, 40vw" width="480" height="642" loading="lazy" decoding="async" alt="Sandra Grast en el jardín, de pie sobre una pierna en la postura del árbol, con las manos unidas frente al pecho">
+      </picture>
+      <svg class="arco__trazo" viewBox="0 0 200 268" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d="M-6 250C-10 150 0 40 100 8c78-24 112 60 104 140"/></svg>
+    </figure>
     <ol class="pasos reveal" aria-label="Qué puedes descubrir durante la conferencia">
-      <li>Reconocer cómo estás viviendo.</li>
-      <li>Identificar patrones de interpretación y respuesta.</li>
-      <li>Definir una primera acción.</li>
+      <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-ojo"/></svg><span>Reconocer cómo estás viviendo.</span></li>
+      <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-espiral"/></svg><span>Identificar patrones de interpretación y respuesta.</span></li>
+      <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-sendero"/></svg><span>Definir una primera acción.</span></li>
     </ol>
-    <p class="aviso">No es un sustituto de la atención psicológica o de otros servicios profesionales de salud cuando estos son necesarios.</p>
   </div>
 </section>
 
 <!-- 4 · ENTRADAS + INFO PRÁCTICA + CÓMO LLEGAR -->
 <section class="sec entradas" id="entradas" aria-labelledby="ent-titulo">
+  <svg class="ola ola--papel" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0h1440v12c-140 22-360 26-560 10S500 0 320 16 80 28 0 20z"/></svg>
   <div class="entradas__grid">
     <div class="entradas__info">
       <div class="entradas__cab"><h2 id="ent-titulo" class="h2 h2--claro">Elige tu entrada</h2><p class="entradas__cupos">Cupos limitados</p></div>
@@ -135,13 +169,22 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
           <a class="btn btn--full btn--caramelo" href="#entradas" data-abrir-form data-entrada="pareja" data-origen="boton-ticket-pareja" aria-haspopup="dialog">Quiero inscribirme en pareja</a>
         </article>
       </div>
-      <p class="entradas__pago">Al tocar tu entrada se abre un formulario corto; al terminarlo, pasas al pago.</p>
+      <p class="entradas__pago">Primero un formulario corto; después, el pago.</p>
     </div>
 
     <div class="entradas__lugar">
+      <!-- silueta: mujer caminando hacia una puerta en arco -->
+      <svg class="figura figura--puerta dibujo" viewBox="0 0 300 300" aria-hidden="true" focusable="false">
+        <path class="f-acento" pathLength="1" d="M204 292V100c0-50 88-50 88 0v192"/>
+        <path class="f-reflejo" pathLength="1" d="M4 293c60-5 120 2 180-3 40-3 80-2 116 0"/>
+        <path pathLength="1" d="M112 50c7 0 12 6 12 13s-5 13-12 13-11-6-11-13 4-13 11-13zM101 60c-7-2-11 4-9 9 1 4 6 5 9 3"/>
+        <path pathLength="1" d="M116 76C117 84 121 88 127 92 135 98 136 110 132 122 128 134 128 146 134 158 144 182 156 210 166 238 150 244 120 246 92 240 96 214 98 186 104 160 108 140 106 120 104 104 103 92 106 82 108 76"/>
+        <path pathLength="1" d="M146 242C150 260 154 276 160 290h12M112 244C106 262 100 276 92 288l-7-5"/>
+        <path pathLength="1" d="M124 98C130 120 136 138 148 150M108 98C102 118 96 134 86 146"/>
+      </svg>
       <figure class="lugar">
         <img class="foto" src="img/sandra-conferencia-salon.webp" width="1100" height="1100" loading="lazy" decoding="async" alt="Sandra Grast sonríe de frente con un micrófono en la mano, de pie tras el atril del Hotel Buenavista; en primer plano, personas sentadas de espaldas la escuchan">
-        <figcaption>El salón del Hotel Buenavista, donde nos vemos el 25 de noviembre.</figcaption>
+        <figcaption>Aquí nos vemos el 25 de noviembre.</figcaption>
       </figure>
       <div class="mapas" role="group" aria-label="Cómo llegar al Hotel Buenavista">
         <a class="mapa" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Buena+Vista%2C+Calle+34+%2332-34%2C+Mejoras+P%C3%BAblicas%2C+Bucaramanga" target="_blank" rel="noopener">
@@ -174,43 +217,77 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
 
 <!-- 5 · SANDRA + EFECTO GRAST + FAQ + CIERRE -->
 <section class="sec sandra" id="sandra" aria-labelledby="sandra-titulo">
+  <svg class="ola ola--verde" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 0h1440v16c-180 18-400 10-620 2S440 22 260 18 70 6 0 14z"/></svg>
   <div class="sandra__in">
     <div class="sandra__texto">
       <p class="eyebrow">¿Quién es Sandra Grast?</p>
       <h2 id="sandra-titulo" class="h2 sandra__t">Una experiencia que también nació de mi propia historia.</h2>
       <p class="falta falta--bloque">[FALTA: confirmar que Sandra se siente cómoda publicando este relato personal y que representa fielmente su historia]</p>
-      <div class="prose">
-        <p>Mi nombre es Sandra Grast. Soy coach ontológica, conferencista, mentora de vida, educadora y enfermera profesional.</p>
-        <p class="prose__voz">No hablo desde la idea de tener todas las respuestas. Hablo desde la experiencia de haber tenido que hacerme preguntas que cambiaron mi manera de mirar la vida.</p>
+      <div class="sandra__fila">
+        <figure class="ovalo dibujo">
+          <picture>
+            <source type="image/avif" srcset="img/sandra-jardin-480.avif 480w, img/sandra-jardin-640.avif 640w" sizes="(min-width: 56rem) 15rem, 36vw">
+            <img class="ovalo__img" src="img/sandra-jardin-480.webp" srcset="img/sandra-jardin-480.webp 480w, img/sandra-jardin-640.webp 640w" sizes="(min-width: 56rem) 15rem, 36vw" width="480" height="720" loading="lazy" decoding="async" alt="Sandra Grast de pie en el jardín, sonriente, con camisa celeste y pantalón oscuro, delante de un arbusto con flores moradas">
+          </picture>
+          <svg class="ovalo__hoja" viewBox="0 0 80 120" aria-hidden="true" focusable="false"><path pathLength="1" d="M40 116C14 92 6 52 40 6c34 46 26 86 0 110zM40 116V30M40 70l-14-12M40 56l12-12M40 88l14-12"/></svg>
+        </figure>
+        <blockquote class="sandra__voz"><p>Hablo desde la experiencia de haber tenido que hacerme preguntas que cambiaron mi manera de mirar la vida.</p>
+          <footer>Coach ontológica, conferencista, mentora de vida, educadora y enfermera profesional.</footer></blockquote>
       </div>
       <div class="grast" id="efecto-grast">
         <p class="grast__t">El recorrido de <strong>Efecto GRAST</strong> integra siete movimientos:</p>
-        <ol class="chips" aria-label="Los siete movimientos de Efecto GRAST">
-          <li>Conocerme</li><li>Aceptarme</li><li>Reconocerme</li><li>Soltar</li><li>Elegir</li><li>Actuar</li><li>Sostener</li>
+        <ol class="mov reveal" tabindex="0" aria-label="Los siete movimientos de Efecto GRAST">
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-ojo"/></svg>Conocerme</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-mano"/></svg>Aceptarme</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-espejo"/></svg>Reconocerme</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-hoja"/></svg>Soltar</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-cruce"/></svg>Elegir</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-paso"/></svg>Actuar</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-raiz"/></svg>Sostener</li>
         </ol>
       </div>
     </div>
 
+    <div class="sandra__lado">
     <div class="faq" id="preguntas">
+      <!-- silueta: mujer sentada, manos en el regazo -->
+      <svg class="figura figura--sentada dibujo" viewBox="0 0 240 300" aria-hidden="true" focusable="false">
+        <path class="f-reflejo" pathLength="1" d="M20 292c50-4 110 3 200-2"/>
+        <path class="f-acento" pathLength="1" d="M70 214h96M84 214l-8 76M152 214l8 76"/>
+        <path pathLength="1" d="M118 26c12 0 20 11 19 24-1 12-9 22-19 22s-18-10-18-23 7-23 18-23z"/>
+        <path pathLength="1" d="M104 40c-10 8-12 24-4 36"/>
+        <path pathLength="1" d="M112 72c-1 10-6 18-12 28-6 14-8 34-6 56 2 22 4 40 6 50 26 4 54 2 82 0 8 0 10 8 8 16-2 22 0 46 2 66h16"/>
+        <path pathLength="1" d="M126 72c2 8 10 16 14 30 4 16 0 30-4 44"/>
+        <path pathLength="1" d="M104 100c4 30 10 56 30 80 10 12 26 16 40 14"/>
+      </svg>
       <h3 class="faq__t">Preguntas frecuentes</h3>
       <div class="faq__list">
         <details><summary>¿Es una conferencia motivacional?</summary>
-          <p>No está concebida como una charla motivacional tradicional. Es una experiencia participativa que combina preguntas, situaciones cotidianas y ejercicios de reflexión.</p></details>
+          <p>Es una experiencia participativa que combina preguntas, situaciones cotidianas y ejercicios de reflexión.</p></details>
         <details><summary>¿Necesito tener experiencia previa en coaching o desarrollo personal?</summary>
           <p>No. La experiencia está planteada para que puedas participar desde tu propia vida, sin necesidad de conocimientos previos.</p></details>
         <details><summary>¿Tengo que compartir mis asuntos personales con los demás?</summary>
-          <p>No es necesario que compartas públicamente asuntos personales. Puedes realizar tu reflexión de manera individual y participar respetando tus propios límites.</p></details>
+          <p>No es necesario que compartas públicamente asuntos personales.</p></details>
+      </div>
+    </div>
+  <div class="cierre" id="inscripcion">
+        <!-- silueta: mujer de pie con los brazos abiertos -->
+        <svg class="figura figura--brazos dibujo" viewBox="0 0 260 320" aria-hidden="true" focusable="false">
+          <path class="f-acento" pathLength="1" d="M66 214A78 78 0 1 1 194 214"/>
+          <path pathLength="1" d="M130 30c10 0 17 10 16 21-1 11-8 19-16 19s-16-8-16-19 6-21 16-21z"/>
+          <path pathLength="1" d="M117 44c-4 14-2 26 6 34M143 44c4 14 2 26-6 34"/>
+          <path pathLength="1" d="M24 26c22 26 56 54 88 58 6 1 12-2 18-2s12 3 18 2c32-4 66-32 88-58"/>
+          <path pathLength="1" d="M114 86C110 110 116 140 110 166 100 210 84 270 70 316M146 86C150 110 144 140 150 166 160 210 176 270 190 316"/>
+          <path pathLength="1" d="M24 26l-8-6M24 26l-2-9M236 26l8-6M236 26l2-9"/>
+        </svg>
+        <p class="cierre__titulo">No tienes que tener todas las respuestas. <span>Pero puedes empezar por hacerte una pregunta diferente.</span></p>
+        <div class="cierre__accion">
+          <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="cierre" aria-haspopup="dialog">Quiero inscribirme</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="cierre" id="inscripcion">
-    <p class="cierre__titulo">No tienes que tener todas las respuestas. <span>Pero puedes empezar por hacerte una pregunta diferente.</span></p>
-    <div class="cierre__accion">
-      <a class="btn btn--lg" href="#entradas" data-abrir-form data-origen="cierre" aria-haspopup="dialog">Quiero inscribirme</a>
-      <p class="cierre__nota">Consulta la fecha, el lugar y las condiciones de participación antes de completar tu inscripción.</p>
-    </div>
-  </div>
 </section>
 
 <section class="franja" aria-labelledby="franja-titulo">
@@ -222,6 +299,7 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
 
 <footer class="footer" id="contacto">
   <p><strong>Sandra Grast</strong> · Efecto GRAST · © 2026</p>
+  <p class="aviso">VOLVER A TI no es un sustituto de la atención psicológica o de otros servicios profesionales de salud cuando estos son necesarios.</p>
   <p id="privacidad"><span class="falta">[FALTA: correo, WhatsApp con mensaje prellenado, redes oficiales y aviso de privacidad]</span></p>
 </footer>
 
@@ -371,6 +449,6 @@ src="https://www.facebook.com/tr?id=1837235310745837&ev=PageView&noscript=1"
   <ol id="rev-lista"></ol>
 </section>
 
-<script src="js/main.js?v=20" defer></script>
+<script src="js/main.js?v=21" defer></script>
 </body>
 </html>
